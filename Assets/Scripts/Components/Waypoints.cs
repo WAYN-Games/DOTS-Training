@@ -7,7 +7,5 @@ using Unity.Mathematics;
 [GenerateAuthoringComponent]
 public struct Waypoints : IBufferElementData
 {
-    public float3 value;
-    
-    
+    public float3 value;   
 }

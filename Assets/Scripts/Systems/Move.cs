@@ -20,7 +20,7 @@ public partial class Move : SystemBase
                 {
                     pathIndex.value = (pathIndex.value + 1) % path.Length;
                 }
-            translation.Value += math.normalize(direction) * deltaTime* speed.value;
+                translation.Value += math.normalize(direction) * deltaTime* speed.value;
         }).Schedule();
     }
 }
