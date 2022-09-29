@@ -4,7 +4,6 @@ using Unity.Entities;
 using Unity.Mathematics;
 
 [Serializable]
-[GenerateAuthoringComponent]
 public struct Waypoints : IBufferElementData
 {
     public float3 value;   
