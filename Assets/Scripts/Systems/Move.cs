@@ -13,7 +13,7 @@ public partial class Move : SystemBase
     {
         float deltaTime = World.Time.DeltaTime;
         
-        Entities.WithAll<RenderMesh>().ForEach((ref TransformAspect transform,ref NextPathIndex pathIndex,
+        Entities.WithAll<RenderBounds>().ForEach((ref TransformAspect transform,ref NextPathIndex pathIndex,
             in DynamicBuffer<Waypoints> path, in Speed speed) => {
                 float3 direction = path[pathIndex.value].value - transform.Position;
                 if(math.distance(transform.Position, path[pathIndex.value].value) < 0.1f)
