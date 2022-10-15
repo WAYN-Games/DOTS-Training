@@ -39,7 +39,7 @@ public class EnemyBaker : Baker<EnemyAuthoring>
         Debug.Log("Baker is called");
     }
 }
-
+/*
 [WorldSystemFilter(WorldSystemFilterFlags.BakingSystem)]
 public partial class EnemyBakingSystem : SystemBase
 {
@@ -48,5 +48,25 @@ public partial class EnemyBakingSystem : SystemBase
         Entities.WithAll<TagComponent>().ForEach((in DynamicBuffer<Waypoints> path) => {
             Debug.Log($"This entity has {path.Length} waypoints.");
         }).Run();
+    }
+}*/
+
+[WorldSystemFilter(WorldSystemFilterFlags.BakingSystem)]
+public partial struct EnemyBakingISystem : ISystem
+{
+    public void OnCreate(ref SystemState state)
+    {
+    }
+
+    public void OnDestroy(ref SystemState state)
+    {
+    }
+
+    public void OnUpdate(ref SystemState state)
+    {
+        foreach(var path in SystemAPI.Query<DynamicBuffer<Waypoints>>())
+        {
+            Debug.Log($"This entity has {path.Length} waypoints.");
+        }
     }
 }
