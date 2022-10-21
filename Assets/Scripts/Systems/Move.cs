@@ -1,11 +1,9 @@
 using Unity.Burst;
-using Unity.Collections;
 using Unity.Entities;
 using Unity.Jobs;
 using Unity.Mathematics;
 using Unity.Transforms;
 using Unity.Rendering;
-using UnityEngine;
 
 public partial class Move : SystemBase
 {
@@ -13,8 +11,11 @@ public partial class Move : SystemBase
     {
         float deltaTime = World.Time.DeltaTime;
         
-        Entities.WithAll<RenderBounds>().ForEach((ref TransformAspect transform,ref NextPathIndex pathIndex,
-            in DynamicBuffer<Waypoints> path, in Speed speed) => {
+        Entities.WithAll<RenderBounds>().ForEach((
+            ref TransformAspect transform,
+            ref NextPathIndex pathIndex,
+            in DynamicBuffer<Waypoints> path, 
+            in Speed speed) => {
                 float3 direction = path[pathIndex.value].value - transform.Position;
                 if(math.distance(transform.Position, path[pathIndex.value].value) < 0.1f)
                 {
@@ -29,7 +30,7 @@ public partial class Move : SystemBase
 
 
 [BurstCompile]
-public partial struct MoveIstsyem : ISystem
+public partial struct MoveISystem : ISystem
 {
     public void OnCreate(ref SystemState state)
     {
@@ -42,15 +43,12 @@ public partial struct MoveIstsyem : ISystem
     [BurstCompile]
     public void OnUpdate(ref SystemState state)
     {
-        foreach (var (transform, pathIndex, path, speed) in SystemAPI.Query<TransformAspect, RefRW<NextPathIndex>, DynamicBuffer<Waypoints>, RefRO<Speed>>().WithAll<RenderBounds>())
+        foreach (var pathFollower 
+            in SystemAPI.Query<
+                PathFollowerAspec>()
+                .WithAll<RenderBounds>())
         {
-
-            float3 direction = path[pathIndex.ValueRO.value].value - transform.Position;
-            if (math.distance(transform.Position, path[pathIndex.ValueRO.value].value) < 0.1f)
-            {
-                pathIndex.ValueRW.value = (pathIndex.ValueRO.value + 1) % path.Length;
-            }
-            transform.Position += math.normalize(direction) * SystemAPI.Time.DeltaTime * speed.ValueRO.value;
-        }
+            pathFollower.FollowPath(SystemAPI.Time.DeltaTime);
+      }
     }
 }

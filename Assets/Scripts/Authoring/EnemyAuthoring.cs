@@ -18,9 +18,12 @@ public class EnemyBaker : Baker<EnemyAuthoring>
 {
     public override void Bake(EnemyAuthoring authoring)
     {
-        Speed speed = default;
-        speed.value = authoring.Speed;  
-        AddComponent(speed);
+        if (authoring.Speed > 0)
+        {
+            Speed speed = default;
+            speed.value = authoring.Speed;
+            AddComponent(speed);
+        }
 
         AddComponent<TagComponent>();
 
