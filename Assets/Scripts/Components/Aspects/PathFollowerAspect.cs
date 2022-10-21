@@ -3,7 +3,7 @@ using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Transforms;
 
-public readonly partial struct PathFollowerAspec : IAspect
+public readonly partial struct PathFollowerAspect : IAspect
 {
     [Optional]
     readonly RefRO<Speed> speed;
