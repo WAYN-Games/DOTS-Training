@@ -45,8 +45,7 @@ public partial struct MoveISystem : ISystem
     {
         foreach (var pathFollower 
             in SystemAPI.Query<
-                PathFollowerAspect>()
-                .WithAll<RenderBounds>())
+                PathFollowerAspect>())
         {
             pathFollower.FollowPath(SystemAPI.Time.DeltaTime);
       }
