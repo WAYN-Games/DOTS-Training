@@ -1,18 +1,28 @@
 using System.Collections.Generic;
 using Unity.Entities;
+using Unity.Transforms;
 using UnityEngine;
 
 public class EnemyAuthoring : MonoBehaviour
 {
     public float Speed;
-    public List<Transform> Waypoints;
+    public GameObject Prefab;
 }
 
-[TemporaryBakingType]//[BakingType]
-public struct TagComponent : IComponentData
+public class PresentationGO : IComponentData
 {
-
+    public GameObject Prefab;
 }
+public class TransformGO : ICleanupComponentData
+{
+    public Transform Transform;
+}
+
+public class AnimatorGO : IComponentData
+{
+    public Animator Animator;
+}
+
 
 public class EnemyBaker : Baker<EnemyAuthoring>
 {
@@ -25,37 +35,13 @@ public class EnemyBaker : Baker<EnemyAuthoring>
             AddComponent(speed);
         }
 
-        AddComponent<TagComponent>();
-
-        if (authoring.Waypoints == null || authoring.Waypoints.Count == 0) return;
-
-        AddComponent<NextPathIndex>();
-        DynamicBuffer<Waypoints> path = AddBuffer<Waypoints>();
-
-        foreach(var point in authoring.Waypoints)
-        {
-
-            Waypoints wp = default;
-            wp.value = point.position;
-            path.Add(wp);
-        }
-        Debug.Log("Baker is called");
+        PresentationGO pgo = new PresentationGO();
+        pgo.Prefab = authoring.Prefab;
+        AddComponentObject(pgo);
     }
 }
-/*
-[WorldSystemFilter(WorldSystemFilterFlags.BakingSystem)]
-public partial class EnemyBakingSystem : SystemBase
-{
-    protected override void OnUpdate()
-    {
-        Entities.WithAll<TagComponent>().ForEach((in DynamicBuffer<Waypoints> path) => {
-            Debug.Log($"This entity has {path.Length} waypoints.");
-        }).Run();
-    }
-}*/
 
-[WorldSystemFilter(WorldSystemFilterFlags.BakingSystem)]
-public partial struct EnemyBakingISystem : ISystem
+public partial struct PresentationGOSystem : ISystem
 {
     public void OnCreate(ref SystemState state)
     {
@@ -67,9 +53,30 @@ public partial struct EnemyBakingISystem : ISystem
 
     public void OnUpdate(ref SystemState state)
     {
-        foreach(var path in SystemAPI.Query<DynamicBuffer<Waypoints>>())
+        var ecbBOS = SystemAPI.GetSingleton<BeginSimulationEntityCommandBufferSystem.Singleton>().CreateCommandBuffer(state.WorldUnmanaged);
+
+        foreach(var (pgo,entity) in SystemAPI.Query<PresentationGO>().WithEntityAccess())
         {
-            Debug.Log($"This entity has {path.Length} waypoints.");
+            GameObject go = GameObject.Instantiate(pgo.Prefab);
+            go.AddComponent<EntityGameObject>().AssignEntity(entity, state.EntityManager);
+
+            ecbBOS.AddComponent(entity, new TransformGO() { Transform = go.transform });
+            ecbBOS.AddComponent(entity, new AnimatorGO() { Animator = go.GetComponent<Animator>() });
+
+            ecbBOS.RemoveComponent<PresentationGO>(entity);
+        }
+        var ecbEOS = SystemAPI.GetSingleton<EndSimulationEntityCommandBufferSystem.Singleton>().CreateCommandBuffer(state.WorldUnmanaged);
+
+        foreach (var (goTransform,goAnimator,tranform,speed) in SystemAPI.Query<TransformGO, AnimatorGO, TransformAspect, RefRO<Speed>>())
+        {
+            goTransform.Transform.position = tranform.Position;
+            goTransform.Transform.rotation = tranform.Rotation;
+            goAnimator.Animator.SetFloat("speed", speed.ValueRO.value);
+        }
+        foreach(var (goTransform,entity) in SystemAPI.Query<TransformGO>().WithNone<LocalToWorld>().WithEntityAccess())
+        {
+            GameObject.Destroy(goTransform.Transform.gameObject);
+            ecbEOS.RemoveComponent<TransformGO>(entity);
         }
     }
 }

@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 100078, guid: 188f1042b5ff4644389fad5df1f98d7c, type: 3}
       propertyPath: m_Name
-      value: Skeleton@Walk
+      value: Skeleton@Walk Variant
       objectReference: {fileID: 0}
     - target: {fileID: 400078, guid: 188f1042b5ff4644389fad5df1f98d7c, type: 3}
       propertyPath: m_RootOrder
@@ -56,6 +56,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9500000, guid: 188f1042b5ff4644389fad5df1f98d7c, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 79bb7244b63fb264695f1b775e8dcf7b, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

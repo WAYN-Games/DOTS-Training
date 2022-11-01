@@ -171,8 +171,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0b88049645f1ca42bc99c702ec93c50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Prefab: {fileID: 199571641308537135, guid: 4e3a6f13afdf276439d3a7bcfd81210a, type: 3}
-  Timer: 0.1
+  Prefab: {fileID: 2448151437763222362, guid: be2f492e6888a9945bb1433fd9b517aa, type: 3}
+  Timer: 1
 --- !u!1 &566993776
 GameObject:
   m_ObjectHideFlags: 0

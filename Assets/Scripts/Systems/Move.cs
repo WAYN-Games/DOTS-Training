@@ -5,30 +5,6 @@ using Unity.Mathematics;
 using Unity.Transforms;
 using Unity.Rendering;
 
-public partial class Move : SystemBase
-{
-    protected override void OnUpdate()
-    {
-        float deltaTime = World.Time.DeltaTime;
-        
-        Entities.WithAll<RenderBounds>().ForEach((
-            ref TransformAspect transform,
-            ref NextPathIndex pathIndex,
-            in DynamicBuffer<Waypoints> path, 
-            in Speed speed) => {
-                float3 direction = path[pathIndex.value].value - transform.Position;
-                if(math.distance(transform.Position, path[pathIndex.value].value) < 0.1f)
-                {
-                    pathIndex.value = (pathIndex.value + 1) % path.Length;
-                }
-                transform.Position += math.normalize(direction) * deltaTime* speed.value;
-        }).Schedule();
-        
-
-    }
-}
-
-
 [BurstCompile]
 public partial struct MoveISystem : ISystem
 {
@@ -43,11 +19,17 @@ public partial struct MoveISystem : ISystem
     [BurstCompile]
     public void OnUpdate(ref SystemState state)
     {
-        foreach (var pathFollower 
+        var ecbBOS = SystemAPI.GetSingleton<BeginSimulationEntityCommandBufferSystem.Singleton>().CreateCommandBuffer(state.WorldUnmanaged);
+
+        foreach (var (pathFollower,entity)
             in SystemAPI.Query<
-                PathFollowerAspect>())
+                PathFollowerAspect>().WithEntityAccess())
         {
             pathFollower.FollowPath(SystemAPI.Time.DeltaTime);
+            if(pathFollower.HasReachedEndOfPath())
+            {
+                ecbBOS.DestroyEntity(entity);
+            }
       }
     }
 }

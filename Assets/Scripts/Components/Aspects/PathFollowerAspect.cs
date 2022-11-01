@@ -21,6 +21,13 @@ public readonly partial struct PathFollowerAspect : IAspect
         }
         float movementSpeed = speed.IsValid ? speed.ValueRO.value : 1;
         transform.Position += math.normalize(direction) * time * movementSpeed;
+        transform.LookAt(path[pathIndex.ValueRO.value].value);
 
     }
+
+    public bool HasReachedEndOfPath()
+    {
+        return math.distance(transform.Position, path[path.Length - 1].value) < 0.1f;
+    }
+
 }
