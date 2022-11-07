@@ -16,7 +16,7 @@ public class EntityGameObject : MonoBehaviour
 
     public void OnDestroy()
     {
-        if (!EntityManager.Equals(default))
+        if (EntityManager != null)
         {
             EntityManager.DestroyEntity(Entity);
         }

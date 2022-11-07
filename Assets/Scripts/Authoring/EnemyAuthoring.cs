@@ -75,7 +75,10 @@ public partial struct PresentationGOSystem : ISystem
         }
         foreach(var (goTransform,entity) in SystemAPI.Query<TransformGO>().WithNone<LocalToWorld>().WithEntityAccess())
         {
-            GameObject.Destroy(goTransform.Transform.gameObject);
+            if (goTransform.Transform != null)
+            {
+                GameObject.Destroy(goTransform.Transform.gameObject);
+            }
             ecbEOS.RemoveComponent<TransformGO>(entity);
         }
     }
