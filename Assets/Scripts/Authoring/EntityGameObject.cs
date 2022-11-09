@@ -6,19 +6,19 @@ using UnityEngine;
 public class EntityGameObject : MonoBehaviour
 {
     private Entity Entity;
-    private EntityManager EntityManager;
+    private World World;
 
-    public void AssignEntity(Entity e, EntityManager em)
+    public void AssignEntity(Entity e, World world)
     {
         Entity = e;
-        EntityManager = em;
+        World = world;
     }
 
     public void OnDestroy()
     {
-        if (EntityManager != null)
+        if (World.IsCreated && World.EntityManager.Exists(Entity))
         {
-            EntityManager.DestroyEntity(Entity);
+            World.EntityManager.DestroyEntity(Entity);
         }
     }
 }
