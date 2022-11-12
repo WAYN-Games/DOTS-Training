@@ -1,0 +1,8 @@
+using Unity.Entities;
+
+#ROOTNAMESPACEBEGIN#
+public class #SCRIPTNAME# : IComponentData
+{
+
+}
+#ROOTNAMESPACEEND#
