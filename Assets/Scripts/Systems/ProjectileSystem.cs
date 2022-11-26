@@ -42,7 +42,6 @@ public partial struct ProjectileSystem : ISystem
                     Entity e = ecbBOS.Instantiate(towerData.ValueRO.Prefab);
                     ecbBOS.SetComponent(e, new Translation() { Value = transform.Position });
                     ecbBOS.AddComponent(e, new Target() { Value = closestHitCollector.ClosestHit.Entity });
-                    ecbBOS.AddComponent(e, new Speed() { value = 20f });
 
                 }
 
