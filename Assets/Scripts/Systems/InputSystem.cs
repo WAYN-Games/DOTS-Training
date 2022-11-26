@@ -1,4 +1,5 @@
 using Unity.Burst;
+using Unity.Collections;
 using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Physics;
@@ -33,8 +34,13 @@ public partial struct InputSystem : ISystem
                 if(physicsWorld.CastRay(placementInput.Value,out var hit))
                 {
                     Debug.Log($"{hit.Position}");
-                    Entity e = ecbBOS.Instantiate(towers[placementInput.index].Prefab);
-                    ecbBOS.SetComponent(e, new Translation() { Value = math.round(hit.Position) + math.up() });
+                    var towerPosition = math.round(hit.Position) + math.up();
+                    NativeList<DistanceHit> distances = new NativeList<DistanceHit>(Allocator.Temp);
+                    if (!physicsWorld.OverlapSphere(towerPosition + math.up(), 0.1f, ref distances, CollisionFilter.Default))
+                    {
+                        Entity e = ecbBOS.Instantiate(towers[placementInput.index].Prefab);
+                        ecbBOS.SetComponent(e, new Translation() { Value = towerPosition });
+                    }
                 }
             }
             input.Clear();

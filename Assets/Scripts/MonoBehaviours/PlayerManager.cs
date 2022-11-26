@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.Entities;
 using Unity.Physics;
+using Unity.Physics.Authoring;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -11,6 +12,8 @@ public class PlayerManager : MonoBehaviour
     public InputAction Input;
     public Camera Camera;
     public int TowerIndex;
+    public PhysicsCategoryTags BelongsTo;
+    public PhysicsCategoryTags CollidesWith;
 
     private Entity Entity;
     private World World;
@@ -37,10 +40,14 @@ public class PlayerManager : MonoBehaviour
             Entity = World.EntityManager.CreateEntity();
             World.EntityManager.AddBuffer<TowerPlacementInput>(Entity);
         }
+        CollisionFilter filter = CollisionFilter.Default;
+        filter.BelongsTo = BelongsTo.Value;
+        filter.CollidesWith = CollidesWith.Value;
+
 
         RaycastInput input = new RaycastInput() { 
         Start = ray.origin,
-        Filter = CollisionFilter.Default,
+        Filter = filter,
         End = ray.GetPoint(Camera.farClipPlane)
         };
 
