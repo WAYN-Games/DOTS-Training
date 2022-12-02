@@ -6,6 +6,7 @@ using Unity.Physics;
 using Unity.Physics.Systems;
 using Unity.Transforms;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 [UpdateInGroup(typeof(FixedStepSimulationSystemGroup))]
 [UpdateAfter(typeof(PhysicsSystemGroup))]
@@ -39,7 +40,9 @@ public partial struct InputSystem : ISystem
                     if (!physicsWorld.OverlapSphere(towerPosition + math.up(), 0.1f, ref distances, CollisionFilter.Default))
                     {
                         Entity e = ecbBOS.Instantiate(towers[placementInput.index].Prefab);
-                        ecbBOS.SetComponent(e, new Translation() { Value = towerPosition });
+                        var transform = LocalTransform.Identity;
+                        transform.Position = towerPosition;
+                        ecbBOS.SetComponent(e, transform);
                     }
                 }
             }

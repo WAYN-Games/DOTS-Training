@@ -2,6 +2,7 @@
 using Unity.Transforms;
 using UnityEngine;
 
+[UpdateAfter(typeof(TransformSystemGroup))]
 public partial struct PresentationGOSystem : ISystem
 {
     public void OnCreate(ref SystemState state)
@@ -16,11 +17,11 @@ public partial struct PresentationGOSystem : ISystem
     {
         var ecbBOS = SystemAPI.GetSingleton<BeginSimulationEntityCommandBufferSystem.Singleton>().CreateCommandBuffer(state.WorldUnmanaged);
 
-        foreach(var (pgo,entity) in SystemAPI.Query<PresentationGO>().WithEntityAccess())
+        foreach(var (pgo,transform,entity) in SystemAPI.Query<PresentationGO,TransformAspect>().WithEntityAccess())
         {
             GameObject go = GameObject.Instantiate(pgo.Prefab);
             go.AddComponent<EntityGameObject>().AssignEntity(entity, state.World);
-
+            go.transform.position = transform.WorldPosition;
             ecbBOS.AddComponent(entity, new TransformGO() { Transform = go.transform });
             ecbBOS.AddComponent(entity, new AnimatorGO() { Animator = go.GetComponent<Animator>() });
 
@@ -30,8 +31,8 @@ public partial struct PresentationGOSystem : ISystem
 
         foreach (var (goTransform,goAnimator,tranform,speed) in SystemAPI.Query<TransformGO, AnimatorGO, TransformAspect, RefRO<Speed>>())
         {
-            goTransform.Transform.position = tranform.Position;
-            goTransform.Transform.rotation = tranform.Rotation;
+            goTransform.Transform.position = tranform.LocalPosition;
+            goTransform.Transform.rotation = tranform.LocalRotation;
             goAnimator.Animator.SetFloat("speed", speed.ValueRO.value);
         }
         foreach(var (goTransform,entity) in SystemAPI.Query<TransformGO>().WithNone<LocalToWorld>().WithEntityAccess())

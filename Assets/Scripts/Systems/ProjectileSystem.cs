@@ -4,6 +4,7 @@ using Unity.Mathematics;
 using Unity.Physics;
 using Unity.Physics.Systems;
 using Unity.Transforms;
+using UnityEngine.UIElements;
 
 [UpdateInGroup(typeof(FixedStepSimulationSystemGroup))]
 [UpdateAfter(typeof(PhysicsSystemGroup))]
@@ -36,11 +37,13 @@ public partial struct ProjectileSystem : ISystem
             if (towerData.ValueRO.TimeToNextSpawn < 0)
             {
                 ClosestHitCollector<DistanceHit> closestHitCollector = new ClosestHitCollector<DistanceHit>(towerData.ValueRO.Range);
-                if(physicsWorld.OverlapSphereCustom(transform.Position,towerData.ValueRO.Range,ref closestHitCollector, towerData.ValueRO.Filter))
+                if(physicsWorld.OverlapSphereCustom(transform.WorldPosition,towerData.ValueRO.Range,ref closestHitCollector, towerData.ValueRO.Filter))
                 {
                     towerData.ValueRW.TimeToNextSpawn = towerData.ValueRO.Timer;
                     Entity e = ecbBOS.Instantiate(towerData.ValueRO.Prefab);
-                    ecbBOS.SetComponent(e, new Translation() { Value = transform.Position });
+                    var transformWorld = LocalTransform.Identity;
+                    transformWorld.Position = transform.WorldPosition;
+                    ecbBOS.SetComponent(e, transformWorld) ;
                     ecbBOS.AddComponent(e, new Target() { Value = closestHitCollector.ClosestHit.Entity });
 
                 }
@@ -55,7 +58,7 @@ public partial struct ProjectileSystem : ISystem
             if (positionLookup.HasComponent(target.ValueRO.Value))
             {
                 transform.LookAt(positionLookup[target.ValueRO.Value].Position);
-                transform.Position = transform.Position + speed.ValueRO.value * SystemAPI.Time.DeltaTime * transform.Forward;
+                transform.WorldPosition = transform.WorldPosition + speed.ValueRO.value * SystemAPI.Time.DeltaTime * transform.Forward;
             }
             else
             {
@@ -71,7 +74,7 @@ public partial struct ProjectileSystem : ISystem
         {
             if (positionLookup.HasComponent(target.ValueRO.Value))
             {
-                if (math.distance(positionLookup[target.ValueRO.Value].Position, transform.Position) < 0.1f)
+                if (math.distance(positionLookup[target.ValueRO.Value].Position, transform.WorldPosition) < 0.1f)
                 {
                     Health hp = health[target.ValueRO.Value];
                     hp.Value -= 5;
