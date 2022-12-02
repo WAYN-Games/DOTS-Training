@@ -153,7 +153,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Towers:
-  - {fileID: 2211183757258524006, guid: 5637edf332af8e343bb508d92da7a180, type: 3}
+  - {fileID: 8186550375771233221, guid: 5bffcfc4593a0e246a9e4e607aaabde0, type: 3}
   - {fileID: 8943350910989204223, guid: f5670a83e50fb8d4f8e2454bb5029ff4, type: 3}
 --- !u!4 &1367867014
 Transform:
