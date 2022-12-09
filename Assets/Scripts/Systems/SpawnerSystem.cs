@@ -1,4 +1,5 @@
 using Unity.Entities;
+using Unity.Mathematics;
 using Unity.Transforms;
 using UnityEngine;
 
@@ -25,14 +26,12 @@ public partial struct SpawnerSystem : ISystem
             {
                 spawner.ValueRW.TimeToNextSpawn = spawner.ValueRO.Timer;
                 Entity e = ecb.Instantiate(spawner.ValueRO.Prefab);
-                Debug.Log($"{position.WorldPosition}");
                 var transformLocal = LocalTransform.Identity;
-                transformLocal.Position = position.LocalPosition;
+                transformLocal.Position = position.WorldPosition;
                 ecb.SetComponent(e, transformLocal);
 
-                var transformWorld = WorldTransform.Identity;
-                transformWorld.Position = position.WorldPosition;
-                ecb.SetComponent(e, transformWorld);
+                
+
                 var buffer = ecb.AddBuffer<Waypoints>(e);
                 buffer.AddRange(path.AsNativeArray());
                 ecb.AddComponent<NextPathIndex>(e);

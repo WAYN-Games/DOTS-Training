@@ -1,0 +1,125 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!319 &31900000
+AvatarMask:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: UpperBodymask
+  m_Mask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+  m_Elements:
+  - m_Path: 
+    m_Weight: 1
+  - m_Path: Body
+    m_Weight: 1
+  - m_Path: Body/Spine01
+    m_Weight: 1
+  - m_Path: Body/Spine01/Chest
+    m_Weight: 1
+  - m_Path: Body/Spine01/Chest/Neck
+    m_Weight: 1
+  - m_Path: Body/Spine01/Chest/Neck/Head
+    m_Weight: 1
+  - m_Path: Body/Spine01/Chest/Neck/Head/EyeRoot
+    m_Weight: 1
+  - m_Path: Body/Spine01/Chest/Neck/Head/EyeRoot/BottomEye_L
+    m_Weight: 1
+  - m_Path: Body/Spine01/Chest/Neck/Head/EyeRoot/BottomEye_R
+    m_Weight: 1
+  - m_Path: Body/Spine01/Chest/Neck/Head/EyeRoot/Jaw
+    m_Weight: 1
+  - m_Path: Body/Spine01/Chest/Neck/Head/EyeRoot/UpperEye_L
+    m_Weight: 1
+  - m_Path: Body/Spine01/Chest/Neck/Head/EyeRoot/UpperEye_R
+    m_Weight: 1
+  - m_Path: Body/Spine01/Chest/UpperArm_L
+    m_Weight: 1
+  - m_Path: Body/Spine01/Chest/UpperArm_L/LowerArm_L
+    m_Weight: 1
+  - m_Path: Body/Spine01/Chest/UpperArm_L/LowerArm_L/Hand_L
+    m_Weight: 1
+  - m_Path: Body/Spine01/Chest/UpperArm_L/LowerArm_L/Hand_L/Index01_L
+    m_Weight: 1
+  - m_Path: Body/Spine01/Chest/UpperArm_L/LowerArm_L/Hand_L/Index01_L/Index02_L
+    m_Weight: 1
+  - m_Path: Body/Spine01/Chest/UpperArm_L/LowerArm_L/Hand_L/Index01_L/Index02_L/Index03_L
+    m_Weight: 1
+  - m_Path: Body/Spine01/Chest/UpperArm_L/LowerArm_L/Hand_L/Mid01_L
+    m_Weight: 1
+  - m_Path: Body/Spine01/Chest/UpperArm_L/LowerArm_L/Hand_L/Mid01_L/Mid02_L
+    m_Weight: 1
+  - m_Path: Body/Spine01/Chest/UpperArm_L/LowerArm_L/Hand_L/Mid01_L/Mid02_L/Mid03_L
+    m_Weight: 1
+  - m_Path: Body/Spine01/Chest/UpperArm_L/LowerArm_L/Hand_L/Pinky01_L
+    m_Weight: 1
+  - m_Path: Body/Spine01/Chest/UpperArm_L/LowerArm_L/Hand_L/Pinky01_L/Pinky02_L
+    m_Weight: 1
+  - m_Path: Body/Spine01/Chest/UpperArm_L/LowerArm_L/Hand_L/Pinky01_L/Pinky02_L/Pinky03_L
+    m_Weight: 1
+  - m_Path: Body/Spine01/Chest/UpperArm_L/LowerArm_L/Hand_L/Shield 1
+    m_Weight: 1
+  - m_Path: Body/Spine01/Chest/UpperArm_L/LowerArm_L/Hand_L/Thumb01_L
+    m_Weight: 1
+  - m_Path: Body/Spine01/Chest/UpperArm_L/LowerArm_L/Hand_L/Thumb01_L/Thumb02_L
+    m_Weight: 1
+  - m_Path: Body/Spine01/Chest/UpperArm_L/LowerArm_L/Hand_L/Thumb01_L/Thumb02_L/Thumb03_L
+    m_Weight: 1
+  - m_Path: Body/Spine01/Chest/UpperArm_R
+    m_Weight: 1
+  - m_Path: Body/Spine01/Chest/UpperArm_R/LowerArm_R
+    m_Weight: 1
+  - m_Path: Body/Spine01/Chest/UpperArm_R/LowerArm_R/Hand_R
+    m_Weight: 1
+  - m_Path: Body/Spine01/Chest/UpperArm_R/LowerArm_R/Hand_R/Index01_R
+    m_Weight: 1
+  - m_Path: Body/Spine01/Chest/UpperArm_R/LowerArm_R/Hand_R/Index01_R/Index02_R
+    m_Weight: 1
+  - m_Path: Body/Spine01/Chest/UpperArm_R/LowerArm_R/Hand_R/Index01_R/Index02_R/Index03_R
+    m_Weight: 1
+  - m_Path: Body/Spine01/Chest/UpperArm_R/LowerArm_R/Hand_R/Mid01_R
+    m_Weight: 1
+  - m_Path: Body/Spine01/Chest/UpperArm_R/LowerArm_R/Hand_R/Mid01_R/Mid02_R
+    m_Weight: 1
+  - m_Path: Body/Spine01/Chest/UpperArm_R/LowerArm_R/Hand_R/Mid01_R/Mid02_R/Mid03_R
+    m_Weight: 1
+  - m_Path: Body/Spine01/Chest/UpperArm_R/LowerArm_R/Hand_R/Pinky01_R
+    m_Weight: 1
+  - m_Path: Body/Spine01/Chest/UpperArm_R/LowerArm_R/Hand_R/Pinky01_R/Pinky02_R
+    m_Weight: 1
+  - m_Path: Body/Spine01/Chest/UpperArm_R/LowerArm_R/Hand_R/Pinky01_R/Pinky02_R/Pinky03_R
+    m_Weight: 1
+  - m_Path: Body/Spine01/Chest/UpperArm_R/LowerArm_R/Hand_R/Thumb01_R
+    m_Weight: 1
+  - m_Path: Body/Spine01/Chest/UpperArm_R/LowerArm_R/Hand_R/Thumb01_R/Thumb02_R
+    m_Weight: 1
+  - m_Path: Body/Spine01/Chest/UpperArm_R/LowerArm_R/Hand_R/Thumb01_R/Thumb02_R/Thumb03_R
+    m_Weight: 1
+  - m_Path: Body/Spine01/Chest/UpperArm_R/LowerArm_R/Hand_R/Weapon
+    m_Weight: 1
+  - m_Path: Body/UpperLeg_L
+    m_Weight: 0
+  - m_Path: Body/UpperLeg_L/LowerLeg_L
+    m_Weight: 0
+  - m_Path: Body/UpperLeg_L/LowerLeg_L/Feet_L
+    m_Weight: 0
+  - m_Path: Body/UpperLeg_L/LowerLeg_L/Feet_L/FeetBall_L
+    m_Weight: 0
+  - m_Path: Body/UpperLeg_L/LowerLeg_L/Feet_L/FeetBall_L/FeetToe_L
+    m_Weight: 0
+  - m_Path: Body/UpperLeg_R
+    m_Weight: 0
+  - m_Path: Body/UpperLeg_R/LowerLeg_R
+    m_Weight: 0
+  - m_Path: Body/UpperLeg_R/LowerLeg_R/Feet_R
+    m_Weight: 0
+  - m_Path: Body/UpperLeg_R/LowerLeg_R/Feet_R/FeetBall_R
+    m_Weight: 0
+  - m_Path: Body/UpperLeg_R/LowerLeg_R/Feet_R/FeetBall_R/FeetToe_R
+    m_Weight: 0
+  - m_Path: Shield
+    m_Weight: 1
+  - m_Path: Skeleton
+    m_Weight: 1
+  - m_Path: Sword
+    m_Weight: 1

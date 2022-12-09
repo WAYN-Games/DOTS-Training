@@ -41,9 +41,9 @@ public partial struct ProjectileSystem : ISystem
                 {
                     towerData.ValueRW.TimeToNextSpawn = towerData.ValueRO.Timer;
                     Entity e = ecbBOS.Instantiate(towerData.ValueRO.Prefab);
-                    var transformWorld = LocalTransform.Identity;
-                    transformWorld.Position = transform.WorldPosition;
-                    ecbBOS.SetComponent(e, transformWorld) ;
+                    var transformLocal = LocalTransform.Identity;
+                    transformLocal.Position = transform.WorldPosition ;
+                    ecbBOS.SetComponent(e, transformLocal) ;
                     ecbBOS.AddComponent(e, new Target() { Value = closestHitCollector.ClosestHit.Entity });
 
                 }

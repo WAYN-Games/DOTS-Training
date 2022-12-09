@@ -29,13 +29,13 @@ public partial struct PresentationGOSystem : ISystem
         }
         var ecbEOS = SystemAPI.GetSingleton<EndSimulationEntityCommandBufferSystem.Singleton>().CreateCommandBuffer(state.WorldUnmanaged);
 
-        foreach (var (goTransform,goAnimator,tranform,speed) in SystemAPI.Query<TransformGO, AnimatorGO, TransformAspect, RefRO<Speed>>())
+        foreach (var (goTransform,goAnimator, transform,speed) in SystemAPI.Query<TransformGO, AnimatorGO, TransformAspect, RefRO<Speed>>())
         {
-            goTransform.Transform.position = tranform.LocalPosition;
-            goTransform.Transform.rotation = tranform.LocalRotation;
+            goTransform.Transform.position =  transform.WorldPosition;
+            goTransform.Transform.rotation =  transform.WorldRotation;
             goAnimator.Animator.SetFloat("speed", speed.ValueRO.value);
         }
-        foreach(var (goTransform,entity) in SystemAPI.Query<TransformGO>().WithNone<LocalToWorld>().WithEntityAccess())
+        foreach(var (goTransform,entity) in SystemAPI.Query<TransformGO>().WithNone<LocalTransform>().WithEntityAccess())
         {
             if (goTransform.Transform != null)
             {

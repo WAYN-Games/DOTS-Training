@@ -20,9 +20,8 @@ public readonly partial struct PathFollowerAspect : IAspect
             pathIndex.ValueRW.value = (pathIndex.ValueRO.value + 1) % path.Length;
         }
         float movementSpeed = speed.IsValid ? speed.ValueRO.value : 1;
-        transform.WorldPosition += math.normalize(direction) * time * movementSpeed;
+        transform.LocalPosition += math.normalize(direction) * time * movementSpeed;
         transform.LookAt(path[pathIndex.ValueRO.value].value);
-
     }
 
     public bool HasReachedEndOfPath()

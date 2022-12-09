@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Speed: 5
-  Prefab: {fileID: 199571641308537135, guid: 4e3a6f13afdf276439d3a7bcfd81210a, type: 3}
+  Prefab: {fileID: 746643437493007001, guid: 062b523bd4cfab4419ccd799e8474b87, type: 3}
 --- !u!114 &2408705269227132247
 MonoBehaviour:
   m_ObjectHideFlags: 0
