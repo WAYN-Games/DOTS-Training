@@ -19,7 +19,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.collab-proxy": {
-      "version": "1.17.6",
+      "version": "1.17.7",
       "depth": 0,
       "source": "registry",
       "dependencies": {
@@ -154,7 +154,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.render-pipelines.core": {
-      "version": "14.0.3",
+      "version": "14.0.4",
       "depth": 1,
       "source": "builtin",
       "dependencies": {
@@ -165,14 +165,14 @@
       }
     },
     "com.unity.render-pipelines.universal": {
-      "version": "14.0.3",
+      "version": "14.0.4",
       "depth": 0,
       "source": "builtin",
       "dependencies": {
         "com.unity.mathematics": "1.2.1",
         "com.unity.burst": "1.7.3",
-        "com.unity.render-pipelines.core": "14.0.3",
-        "com.unity.shadergraph": "14.0.3"
+        "com.unity.render-pipelines.core": "14.0.4",
+        "com.unity.shadergraph": "14.0.4"
       }
     },
     "com.unity.scriptablebuildpipeline": {
@@ -212,11 +212,11 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.shadergraph": {
-      "version": "14.0.3",
+      "version": "14.0.4",
       "depth": 1,
       "source": "builtin",
       "dependencies": {
-        "com.unity.render-pipelines.core": "14.0.3",
+        "com.unity.render-pipelines.core": "14.0.4",
         "com.unity.searcher": "4.9.2"
       }
     },
@@ -269,6 +269,15 @@
       "dependencies": {
         "com.unity.modules.ui": "1.0.0",
         "com.unity.modules.imgui": "1.0.0"
+      }
+    },
+    "com.unity.visualeffectgraph": {
+      "version": "14.0.4",
+      "depth": 0,
+      "source": "builtin",
+      "dependencies": {
+        "com.unity.shadergraph": "14.0.4",
+        "com.unity.render-pipelines.core": "14.0.4"
       }
     },
     "com.unity.visualscripting": {

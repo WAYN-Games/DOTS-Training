@@ -52,6 +52,7 @@ MonoBehaviour:
   m_CascadeBorder: 0.1
   m_ShadowDepthBias: 1
   m_ShadowNormalBias: 1
+  m_AnyShadowsSupported: 1
   m_SoftShadowsSupported: 1
   m_ConservativeEnclosingSphere: 0
   m_NumIterationsEnclosingSphere: 64
@@ -64,6 +65,7 @@ MonoBehaviour:
   m_SupportsLightLayers: 0
   m_DebugLevel: 0
   m_StoreActionsOptimization: 0
+  m_EnableRenderGraph: 0
   m_UseAdaptivePerformance: 1
   m_ColorGradingMode: 0
   m_ColorGradingLutSize: 32

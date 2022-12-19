@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1787089013639241467}
-  - component: {fileID: 2052510377966443521}
+  - component: {fileID: 480363276422030719}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -25,14 +25,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6499041882622643531}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.199, z: 0}
+  m_LocalPosition: {x: 0, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1721068637964918730}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2052510377966443521
+--- !u!114 &480363276422030719
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -44,10 +44,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bd9f967593ab8b4699400bd915bfbd6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Projectile: {fileID: 8614343751161634666, guid: c14aa943b190632439dd4a9d67b4ebf9,
+  Projectile: {fileID: 3449163494038477751, guid: c278092e1c925b54aadb5831ae35c1fa,
     type: 3}
-  FireRate: 0.2
-  Range: 5
+  FireRate: 0.25
+  Range: 15
 --- !u!1 &8186550375771233221
 GameObject:
   m_ObjectHideFlags: 0
@@ -57,9 +57,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1721068637964918730}
-  - component: {fileID: 7708028819481950067}
+  - component: {fileID: 1333586067809155547}
   m_Layer: 0
-  m_Name: MageTower
+  m_Name: IceTower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -74,7 +74,7 @@ Transform:
   m_GameObject: {fileID: 8186550375771233221}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 5247750109525661796}
@@ -82,7 +82,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7708028819481950067
+--- !u!114 &1333586067809155547
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -97,12 +97,12 @@ MonoBehaviour:
   m_ShapeType: 1
   m_PrimitiveCenter:
     x: 0
-    y: 0
-    z: 0
+    y: 1.629122
+    z: 0.000023961067
   m_PrimitiveSize:
-    x: 1
-    y: 1
-    z: 2
+    x: 2.1529973
+    y: 2.1529973
+    z: 4.506495
   m_PrimitiveOrientation:
     Value:
       x: -90
@@ -110,18 +110,18 @@ MonoBehaviour:
       z: -90
     RotationOrder: 4
   m_Capsule:
-    Height: 2
-    Radius: 0.5
+    Height: 4.506495
+    Radius: 1.0764986
     Axis: 2
   m_Cylinder:
-    Height: 2
-    Radius: 0.5
+    Height: 4.506495
+    Radius: 1.0764986
     Axis: 2
   m_CylinderSideCount: 20
-  m_SphereRadius: 1
+  m_SphereRadius: 2.2532475
   m_MinimumSkinnedVertexWeight: 0.1
   m_ConvexHullGenerationParameters:
-    m_SimplificationTolerance: 0.03
+    m_SimplificationTolerance: 0.06759743
     m_BevelRadius: 0.05
     m_MinimumAngle: 2.5000002
   m_CustomMesh: {fileID: 0}
@@ -242,6 +242,18 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 411524, guid: 77a599bd67f72e24999e1d5d60f433d0, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 411524, guid: 77a599bd67f72e24999e1d5d60f433d0, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 411524, guid: 77a599bd67f72e24999e1d5d60f433d0, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 411524, guid: 77a599bd67f72e24999e1d5d60f433d0, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -281,7 +293,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 411524, guid: 77a599bd67f72e24999e1d5d60f433d0, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 9566220, guid: 77a599bd67f72e24999e1d5d60f433d0, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

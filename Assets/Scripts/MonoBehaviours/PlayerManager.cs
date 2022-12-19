@@ -33,7 +33,6 @@ public class PlayerManager : MonoBehaviour
         Vector2 screenPostion = ctx.ReadValue<Vector2>();
         UnityEngine.Ray ray = Camera.ScreenPointToRay(screenPostion);
 
-        Debug.Log(ray.GetPoint(Camera.farClipPlane));
 
         if(World.IsCreated && !World.EntityManager.Exists(Entity))
         {
