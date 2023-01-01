@@ -1,0 +1,59 @@
+﻿using Unity.Burst;
+using Unity.Entities;
+using Unity.Mathematics;
+using Unity.Physics;
+using Unity.Physics.Systems;
+using Unity.Transforms;
+
+[UpdateInGroup(typeof(FixedStepSimulationSystemGroup))]
+[UpdateAfter(typeof(PhysicsSystemGroup))]
+[BurstCompile]
+public partial struct ProjectileSpawnSystem : ISystem
+{
+    ComponentLookup<LocalTransform> positionLookup;
+    ComponentLookup<Impact> impactLookup;
+    BufferLookup<HitList> hitListLookup;
+    ComponentLookup<Health> healthLookup;
+
+    [BurstCompile]
+    public void OnCreate(ref SystemState state)
+    {
+        positionLookup = SystemAPI.GetComponentLookup<LocalTransform>(true);
+        impactLookup = SystemAPI.GetComponentLookup<Impact>(false);
+        hitListLookup = SystemAPI.GetBufferLookup<HitList>();
+        healthLookup = SystemAPI.GetComponentLookup<Health>(false);
+    }
+
+    [BurstCompile]
+    public void OnDestroy(ref SystemState state)
+    {
+    }
+
+    [BurstCompile]
+    public void OnUpdate(ref SystemState state)
+    {
+        var ecbBOS = SystemAPI.GetSingleton<BeginSimulationEntityCommandBufferSystem.Singleton>().CreateCommandBuffer(state.WorldUnmanaged);
+        PhysicsWorldSingleton physicsWorld = SystemAPI.GetSingleton<PhysicsWorldSingleton>();
+        foreach (var (towerData, transform) in SystemAPI.Query<RefRW<TowerData>, TransformAspect>())
+        {
+            towerData.ValueRW.TimeToNextSpawn -= SystemAPI.Time.DeltaTime;
+            if (towerData.ValueRO.TimeToNextSpawn < 0)
+            {
+                ClosestHitCollector<DistanceHit> closestHitCollector = new ClosestHitCollector<DistanceHit>(towerData.ValueRO.Range);
+                if (physicsWorld.OverlapSphereCustom(transform.WorldPosition, towerData.ValueRO.Range, ref closestHitCollector, towerData.ValueRO.Filter))
+                {
+                    towerData.ValueRW.TimeToNextSpawn = towerData.ValueRO.Timer;
+                    Entity e = ecbBOS.Instantiate(towerData.ValueRO.Prefab);
+                    ecbBOS.SetComponent(e,
+                        LocalTransform.FromMatrix(
+                            float4x4.LookAt(transform.WorldPosition,
+                            closestHitCollector.ClosestHit.Position,
+                            transform.Up)));
+                    ecbBOS.AddComponent(e, new Target() { Value = closestHitCollector.ClosestHit.Entity });
+
+                }
+
+            }
+        }
+    }
+}

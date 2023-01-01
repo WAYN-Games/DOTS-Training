@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections;
+using System.Collections.Generic;
 using Unity.Burst;
 using Unity.Collections;
 using Unity.Entities;
@@ -6,14 +7,14 @@ using Unity.Mathematics;
 using Unity.Physics;
 using Unity.Physics.Systems;
 using Unity.Transforms;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
-using static UnityEngine.GraphicsBuffer;
 
-[UpdateInGroup(typeof(FixedStepSimulationSystemGroup))]
+[UpdateAfter(typeof(TransformSystemGroup))]
 [UpdateAfter(typeof(PhysicsSystemGroup))]
 [BurstCompile]
-public partial struct ProjectileSystem : ISystem
+public partial struct ProjectileCoillisionSystem : ISystem
 {
     ComponentLookup<LocalTransform> positionLookup;
     ComponentLookup<Impact> impactLookup;
@@ -38,51 +39,14 @@ public partial struct ProjectileSystem : ISystem
     public void OnUpdate(ref SystemState state)
     {
         var ecbBOS = SystemAPI.GetSingleton<BeginSimulationEntityCommandBufferSystem.Singleton>().CreateCommandBuffer(state.WorldUnmanaged);
-        PhysicsWorldSingleton physicsWorld = SystemAPI.GetSingleton<PhysicsWorldSingleton>();
-        foreach (var (towerData, transform) in SystemAPI.Query<RefRW<TowerData>, TransformAspect>())
-        {
-            towerData.ValueRW.TimeToNextSpawn -= SystemAPI.Time.DeltaTime;
-            if (towerData.ValueRO.TimeToNextSpawn < 0)
-            {
-                ClosestHitCollector<DistanceHit> closestHitCollector = new ClosestHitCollector<DistanceHit>(towerData.ValueRO.Range);
-                if(physicsWorld.OverlapSphereCustom(transform.WorldPosition,towerData.ValueRO.Range,ref closestHitCollector, towerData.ValueRO.Filter))
-                {
-                    towerData.ValueRW.TimeToNextSpawn = towerData.ValueRO.Timer;
-                    Entity e = ecbBOS.Instantiate(towerData.ValueRO.Prefab);
-                    ecbBOS.SetComponent(e, 
-                        LocalTransform.FromMatrix(
-                            float4x4.LookAt(transform.WorldPosition, 
-                            closestHitCollector.ClosestHit.Position, 
-                            transform.Up))) ;
-                    ecbBOS.AddComponent(e, new Target() { Value = closestHitCollector.ClosestHit.Entity });
 
-                }
 
-            }
-        }
-
-        positionLookup.Update(ref state);
-
-        foreach(var (speed,target,transform,entity ) in SystemAPI.Query<RefRO<Speed>, RefRO<Target>, TransformAspect>().WithEntityAccess())
-        {
-            if (positionLookup.HasComponent(target.ValueRO.Value))
-            {
-                if(!SystemAPI.HasBuffer<HitList>(entity))  
-                    transform.LookAt(positionLookup[target.ValueRO.Value].Position);
-                
-                transform.WorldPosition = transform.WorldPosition + speed.ValueRO.value * SystemAPI.Time.DeltaTime * transform.Forward;
-            }
-            else
-            {
-                ecbBOS.DestroyEntity(entity);
-            }
-        }
 
         positionLookup.Update(ref state);
 
         healthLookup.Update(ref state);
 
-        foreach(var (target,transform,impact,entity) in SystemAPI.Query<RefRO<Target>, TransformAspect,RefRO<Impact>>().WithEntityAccess().WithNone<HitList>())
+        foreach (var (target, transform, impact, entity) in SystemAPI.Query<RefRO<Target>, TransformAspect, RefRO<Impact>>().WithEntityAccess().WithNone<HitList>())
         {
             if (positionLookup.HasComponent(target.ValueRO.Value))
             {
@@ -92,7 +56,7 @@ public partial struct ProjectileSystem : ISystem
                     hp.Value -= 5;
                     healthLookup[target.ValueRO.Value] = hp;
 
-                    Entity impactEntity = ecbBOS.Instantiate(impact.ValueRO.Prefab);                    
+                    Entity impactEntity = ecbBOS.Instantiate(impact.ValueRO.Prefab);
                     ecbBOS.SetComponent(impactEntity,
                         LocalTransform.FromPosition(positionLookup[target.ValueRO.Value].Position));
 
@@ -104,7 +68,7 @@ public partial struct ProjectileSystem : ISystem
                 }
             }
         }
-               
+
         SimulationSingleton simulation = SystemAPI.GetSingleton<SimulationSingleton>();
 
         positionLookup.Update(ref state);
@@ -137,7 +101,7 @@ public partial struct ProjectileSystem : ISystem
         public void Execute(TriggerEvent triggerEvent)
         {
 
-            
+
             Entity projectile = Entity.Null;
             Entity enemy = Entity.Null;
 
@@ -152,7 +116,7 @@ public partial struct ProjectileSystem : ISystem
                 enemy = triggerEvent.EntityB;
 
             // if its a pair of entity we don't want to process, exit
-            if (Entity.Null.Equals(projectile) 
+            if (Entity.Null.Equals(projectile)
                 || Entity.Null.Equals(enemy)) return;
 
 
@@ -160,15 +124,15 @@ public partial struct ProjectileSystem : ISystem
             var hits = HitLists[projectile];
             for (int i = 0; i < hits.Length; i++)
             {
-                if(hits[i].Entity.Equals(enemy))
+                if (hits[i].Entity.Equals(enemy))
                     return;
             }
 
             // Add enemy to list of already hit entities
             // to avoid hitting it next frame due to the
             // stateless nature of the Physics
-            hits.Add(new HitList { Entity  = enemy });
-            
+            hits.Add(new HitList { Entity = enemy });
+
             // Damage enemy
             Health hp = EnemiesHealth[enemy];
             hp.Value -= 5;
@@ -180,7 +144,7 @@ public partial struct ProjectileSystem : ISystem
 
             // Spawn VFX
             Entity impactEntity = ECB.Instantiate(Projectiles[projectile].Prefab);
-            ECB.SetComponent(impactEntity, 
+            ECB.SetComponent(impactEntity,
                 LocalTransform.FromPosition(Positions[enemy].Position));
 
             // Destroy projectile if it hits all its targets

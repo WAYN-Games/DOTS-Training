@@ -644,7 +644,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Prefab: {fileID: 2448151437763222362, guid: be2f492e6888a9945bb1433fd9b517aa, type: 3}
-  Timer: 1
+  Timer: 2
 --- !u!1001 &70966273
 PrefabInstance:
   m_ObjectHideFlags: 0
