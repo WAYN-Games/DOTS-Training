@@ -12,7 +12,6 @@ using UnityEngine;
 using UnityEngine.UIElements;
 
 [UpdateAfter(typeof(TransformSystemGroup))]
-[UpdateAfter(typeof(PhysicsSystemGroup))]
 [BurstCompile]
 public partial struct ProjectileCoillisionSystem : ISystem
 {

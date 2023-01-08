@@ -32,17 +32,21 @@ public partial struct ProjectileSpawnSystem : ISystem
     [BurstCompile]
     public void OnUpdate(ref SystemState state)
     {
+
+        
         var ecbBOS = SystemAPI.GetSingleton<BeginSimulationEntityCommandBufferSystem.Singleton>().CreateCommandBuffer(state.WorldUnmanaged);
         PhysicsWorldSingleton physicsWorld = SystemAPI.GetSingleton<PhysicsWorldSingleton>();
-        foreach (var (towerData, transform) in SystemAPI.Query<RefRW<TowerData>, TransformAspect>())
+        foreach (var (towerData, towerConfig, transform) in SystemAPI.Query<RefRW<TowerData>, RefRO<TowerConfigAsset>, TransformAspect>())
         {
             towerData.ValueRW.TimeToNextSpawn -= SystemAPI.Time.DeltaTime;
             if (towerData.ValueRO.TimeToNextSpawn < 0)
             {
-                ClosestHitCollector<DistanceHit> closestHitCollector = new ClosestHitCollector<DistanceHit>(towerData.ValueRO.Range);
-                if (physicsWorld.OverlapSphereCustom(transform.WorldPosition, towerData.ValueRO.Range, ref closestHitCollector, towerData.ValueRO.Filter))
+                ref TowerConfig tc = ref towerConfig.ValueRO.Config.Value;
+                
+                ClosestHitCollector<DistanceHit> closestHitCollector = new ClosestHitCollector<DistanceHit>(tc.Range);
+                if (physicsWorld.OverlapSphereCustom(transform.WorldPosition, tc.Range, ref closestHitCollector, tc.Filter))
                 {
-                    towerData.ValueRW.TimeToNextSpawn = towerData.ValueRO.Timer;
+                    towerData.ValueRW.TimeToNextSpawn = tc.Timer;
                     Entity e = ecbBOS.Instantiate(towerData.ValueRO.Prefab);
                     ecbBOS.SetComponent(e,
                         LocalTransform.FromMatrix(
@@ -50,7 +54,7 @@ public partial struct ProjectileSpawnSystem : ISystem
                             closestHitCollector.ClosestHit.Position,
                             transform.Up)));
                     ecbBOS.AddComponent(e, new Target() { Value = closestHitCollector.ClosestHit.Entity });
-
+                    
                 }
 
             }

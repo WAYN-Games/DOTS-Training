@@ -19,7 +19,7 @@ public partial struct SpawnerSystem : ISystem
     {
         var ecb = SystemAPI.GetSingleton<BeginSimulationEntityCommandBufferSystem.Singleton>().CreateCommandBuffer(state.WorldUnmanaged);
 
-        foreach(var (spawner,path,position) in SystemAPI.Query<RefRW<SpawnerData>, DynamicBuffer<Waypoints>,TransformAspect>())
+        foreach(var (spawner,path,position) in SystemAPI.Query<RefRW<SpawnerData>, RefRO<PathAsset>,TransformAspect>())
         {
             spawner.ValueRW.TimeToNextSpawn -= SystemAPI.Time.DeltaTime;
             if(spawner.ValueRO.TimeToNextSpawn < 0)
@@ -30,10 +30,9 @@ public partial struct SpawnerSystem : ISystem
                 transformLocal.Position = position.WorldPosition;
                 ecb.SetComponent(e, transformLocal);
 
-                
-
-                var buffer = ecb.AddBuffer<Waypoints>(e);
-                buffer.AddRange(path.AsNativeArray());
+                               
+                ecb.AddComponent<PathAsset>(e);
+                ecb.SetComponent(e, path.ValueRO);
                 ecb.AddComponent<NextPathIndex>(e);
             }
         }
