@@ -17,11 +17,11 @@ public partial struct PresentationGOSystem : ISystem
     {
         var ecbBOS = SystemAPI.GetSingleton<BeginSimulationEntityCommandBufferSystem.Singleton>().CreateCommandBuffer(state.WorldUnmanaged);
 
-        foreach(var (pgo,transform,entity) in SystemAPI.Query<PresentationGO,TransformAspect>().WithEntityAccess())
+        foreach(var (pgo,transform,entity) in SystemAPI.Query<PresentationGO,RefRO<LocalTransform>>().WithEntityAccess())
         {
             GameObject go = GameObject.Instantiate(pgo.Prefab);
             go.AddComponent<EntityGameObject>().AssignEntity(entity, state.World);
-            go.transform.position = transform.WorldPosition;
+            go.transform.position = transform.ValueRO.Position;
             ecbBOS.AddComponent(entity, new TransformGO() { Transform = go.transform });
             ecbBOS.AddComponent(entity, new AnimatorGO() { Animator = go.GetComponent<Animator>() });
 
@@ -29,10 +29,10 @@ public partial struct PresentationGOSystem : ISystem
         }
         var ecbEOS = SystemAPI.GetSingleton<EndSimulationEntityCommandBufferSystem.Singleton>().CreateCommandBuffer(state.WorldUnmanaged);
 
-        foreach (var (goTransform,goAnimator, transform,speed) in SystemAPI.Query<TransformGO, AnimatorGO, TransformAspect, RefRO<Speed>>())
+        foreach (var (goTransform,goAnimator, transform,speed) in SystemAPI.Query<TransformGO, AnimatorGO, RefRO<LocalTransform>, RefRO<Speed>>())
         {
-            goTransform.Transform.position =  transform.WorldPosition;
-            goTransform.Transform.rotation =  transform.WorldRotation;
+            goTransform.Transform.position =  transform.ValueRO.Position;
+            goTransform.Transform.rotation =  transform.ValueRO.Rotation;
             goAnimator.Animator.SetFloat("speed", speed.ValueRO.value);
         }
         foreach(var (goTransform,entity) in SystemAPI.Query<TransformGO>().WithNone<LocalTransform>().WithEntityAccess())

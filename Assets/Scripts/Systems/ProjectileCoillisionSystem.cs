@@ -45,11 +45,11 @@ public partial struct ProjectileCoillisionSystem : ISystem
 
         healthLookup.Update(ref state);
 
-        foreach (var (target, transform, impact, entity) in SystemAPI.Query<RefRO<Target>, TransformAspect, RefRO<Impact>>().WithEntityAccess().WithNone<HitList>())
+        foreach (var (target, transform, impact, entity) in SystemAPI.Query<RefRO<Target>, RefRO<LocalTransform>, RefRO<Impact>>().WithEntityAccess().WithNone<HitList>())
         {
             if (positionLookup.HasComponent(target.ValueRO.Value))
             {
-                if (math.distance(positionLookup[target.ValueRO.Value].Position, transform.WorldPosition) < 0.1f)
+                if (math.distance(positionLookup[target.ValueRO.Value].Position, transform.ValueRO.Position) < 0.1f)
                 {
                     Health hp = healthLookup[target.ValueRO.Value];
                     hp.Value -= 5;

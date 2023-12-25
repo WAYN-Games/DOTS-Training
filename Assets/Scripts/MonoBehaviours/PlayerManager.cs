@@ -49,7 +49,6 @@ public class PlayerManager : MonoBehaviour
         Filter = filter,
         End = ray.GetPoint(Camera.farClipPlane)
         };
-
         World.EntityManager.GetBuffer<TowerPlacementInput>(Entity).Add(new TowerPlacementInput() { Value = input, index = TowerIndex });
 
     }

@@ -36,7 +36,7 @@ public partial struct ProjectileSpawnSystem : ISystem
         
         var ecbBOS = SystemAPI.GetSingleton<BeginSimulationEntityCommandBufferSystem.Singleton>().CreateCommandBuffer(state.WorldUnmanaged);
         PhysicsWorldSingleton physicsWorld = SystemAPI.GetSingleton<PhysicsWorldSingleton>();
-        foreach (var (towerData, towerConfig, transform) in SystemAPI.Query<RefRW<TowerData>, RefRO<TowerConfigAsset>, TransformAspect>())
+        foreach (var (towerData, towerConfig, transform) in SystemAPI.Query<RefRW<TowerData>, RefRO<TowerConfigAsset>, RefRO<LocalToWorld>>())
         {
             towerData.ValueRW.TimeToNextSpawn -= SystemAPI.Time.DeltaTime;
             if (towerData.ValueRO.TimeToNextSpawn < 0)
@@ -44,15 +44,15 @@ public partial struct ProjectileSpawnSystem : ISystem
                 ref TowerConfig tc = ref towerConfig.ValueRO.Config.Value;
                 
                 ClosestHitCollector<DistanceHit> closestHitCollector = new ClosestHitCollector<DistanceHit>(tc.Range);
-                if (physicsWorld.OverlapSphereCustom(transform.WorldPosition, tc.Range, ref closestHitCollector, tc.Filter))
+                if (physicsWorld.OverlapSphereCustom(transform.ValueRO.Position, tc.Range, ref closestHitCollector, tc.Filter))
                 {
                     towerData.ValueRW.TimeToNextSpawn = tc.Timer;
                     Entity e = ecbBOS.Instantiate(towerData.ValueRO.Prefab);
                     ecbBOS.SetComponent(e,
                         LocalTransform.FromMatrix(
-                            float4x4.LookAt(transform.WorldPosition,
+                            float4x4.LookAt(transform.ValueRO.Position,
                             closestHitCollector.ClosestHit.Position,
-                            transform.Up)));
+                            transform.ValueRO.Value.Up())));
                     ecbBOS.AddComponent(e, new Target() { Value = closestHitCollector.ClosestHit.Entity });
                     
                 }

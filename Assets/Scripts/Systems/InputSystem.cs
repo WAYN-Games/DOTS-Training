@@ -38,8 +38,10 @@ public partial struct InputSystem : ISystem
         {
             foreach(var placementInput in input)
             {
+                Debug.Log($"Placing tower");
                 if(physicsWorld.CastRay(placementInput.Value,out var hit))
                 {                    
+                    Debug.Log($"Placing tower at : {hit.Position}");
                     var towerPosition = positionLookup[hit.Entity].Position - new float3(1.5f,-1,1.5f);
                     NativeList<DistanceHit> distances = new NativeList<DistanceHit>(Allocator.Temp);
                     if (!physicsWorld.OverlapSphere(towerPosition + math.up(), 0.1f, ref distances, CollisionFilter.Default))

@@ -19,7 +19,7 @@ public partial struct SpawnerSystem : ISystem
     {
         var ecb = SystemAPI.GetSingleton<BeginSimulationEntityCommandBufferSystem.Singleton>().CreateCommandBuffer(state.WorldUnmanaged);
 
-        foreach(var (spawner,path,position) in SystemAPI.Query<RefRW<SpawnerData>, RefRO<PathAsset>,TransformAspect>())
+        foreach(var (spawner,path,position) in SystemAPI.Query<RefRW<SpawnerData>, RefRO<PathAsset>,RefRO<LocalTransform>>())
         {
             spawner.ValueRW.TimeToNextSpawn -= SystemAPI.Time.DeltaTime;
             if(spawner.ValueRO.TimeToNextSpawn < 0)
@@ -27,7 +27,7 @@ public partial struct SpawnerSystem : ISystem
                 spawner.ValueRW.TimeToNextSpawn = spawner.ValueRO.Timer;
                 Entity e = ecb.Instantiate(spawner.ValueRO.Prefab);
                 var transformLocal = LocalTransform.Identity;
-                transformLocal.Position = position.WorldPosition;
+                transformLocal.Position = position.ValueRO.Position;
                 ecb.SetComponent(e, transformLocal);
 
                                
