@@ -1,3 +1,5 @@
+[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/M4M8UEQP8)
+
 # DOTS-Training
 A repository of all the code to follow he DOTS training series by WAYN Games
 
