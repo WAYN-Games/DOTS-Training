@@ -10,19 +10,28 @@ Come join us on discord to show what you made using the skill you learned here [
 <table border="0">
  <tr>
     <td><b style="font-size:30px">01-HealthRegeneration</b></td>
-    <td><b style="font-size:30px">Title 2</b></td>
+    <td><b style="font-size:30px"></b></td>
  </tr>
  <tr>
     <td>
-	<ul><li> Import Assets</li>
-<li> Setup</li>
-<li> Editor Windows</li>
-<li> IComponentData </li>
-<li> System </li>
-<li> Authoring</li>
-<li> Baking </li>
-<li> TransformUsageFlags </li></ul></td>
-    <td><iframe width="560" height="315" src="https://www.youtube.com/embed/Z5CMGm6lmDQ?si=HCisi7WaagUnygIH" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></td>
+	<ul>
+		<li> Import Assets</li>
+		<li> Setup</li>
+		<li> Editor Windows</li>
+		<li> IComponentData </li>
+		<li> System </li>
+		<li> Authoring</li>
+		<li> Baking </li>
+		<li> TransformUsageFlags </li>
+	</ul>
+    </td>
+    <td>
+	    <a href="(https://www.youtube.com/watch?v=Z5CMGm6lmDQ)">
+  		<img src="(https://img.youtube.com/vi/Z5CMGm6lmDQ/0.jpg)">
+	    </a>
+	    
+    </td>
+	
  </tr>
 </table>
 
