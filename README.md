@@ -26,7 +26,7 @@ Come join us on discord to show what you made using the skill you learned here [
 	</ul>
     </td>
     <td>
-	    <a href="(https://www.youtube.com/watch?v=Z5CMGm6lmDQ)">
+	    <a href="https://www.youtube.com/watch?v=Z5CMGm6lmDQ">
   		<img src="(https://img.youtube.com/vi/Z5CMGm6lmDQ/0.jpg)"/>
 	    </a>	    
     </td>	
