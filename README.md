@@ -9,11 +9,8 @@ Come join us on discord to show what you made using the skill you learned here [
 
 <table border="0">
  <tr>
-    <td><b style="font-size:30px">01-HealthRegeneration</b></td>
-    <td><b style="font-size:30px"></b></td>
- </tr>
- <tr>
     <td>
+	<b style="font-size:30px">01-HealthRegeneration</b>
 	<ul>
 		<li> Import Assets</li>
 		<li> Setup</li>
