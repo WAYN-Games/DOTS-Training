@@ -1,5 +1,4 @@
 ﻿using Unity.Entities;
-using Unity.Entities.Serialization;
 using UnityEngine;
 
 /// <summary>
@@ -12,8 +11,7 @@ public class DamageableAuthoring : MonoBehaviour
     public float MaxHealth;
     [Tooltip("The amount of health the entity will regain every second")]
     public float HealthRegenPerSec;
-
-    public UntypedWeakReferenceId guid;
+    
     /// <summary>
     /// This is the class in charge of baking the data of the DamageableAuthoring component into IComponentData for the baked entity.
     /// Note : The baking process takes place in a dedicated world, that is not the default world.
@@ -29,7 +27,7 @@ public class DamageableAuthoring : MonoBehaviour
             // It will still have transform information due to other bakers. 
             //  TransformUsageFlags.None => Nothing (This is the default for empty game object)
             //  TransformUsageFlags.Renderable => Adds LocalToWorld (This is automatically set if you have a Mesh Renderer on your game object)
-            //  TransformUsageFlags.Dynamic => Adds LocalToWorld, LocalTransform (This is automatically set if you have a Collider on your game object) 
+            //  TransformUsageFlags.Dynamic => Adds LocalToWorld, LocalTransform (This is automatically set if you have a Collider on your game object or if you the game object rereferenced is a Prafab) 
             //  TransformUsageFlags.WorldSpace => Adds LocalToWorld Remove Parent (This is automatically force if the game object is set as static in the inspector)
             //  TransformUsageFlags.NonUniformScale => Adds LocalToWorld, PostTransformMatrix  (This is automatically set if you game object has a non uniform scale
             //  TransformUsageFlags.ManualOverride => N/A
@@ -44,7 +42,7 @@ public class DamageableAuthoring : MonoBehaviour
      
             // Then we add the component to the baked entity
             AddComponent(bakingEntity,health);
-
+            
             // We do the same thing for the HealthRegen component
             // As before, you see that we can add several IComponentData to the entity even if we only have one authoring MonoBehaviour
             AddComponent(bakingEntity,new HealthRegen()

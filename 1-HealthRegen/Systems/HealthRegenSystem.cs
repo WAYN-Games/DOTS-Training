@@ -1,6 +1,7 @@
 ﻿using Unity.Burst;
 using Unity.Entities;
 using Unity.Mathematics;
+using UnityEngine;
 
 /// <summary>
 /// This system will regenerate the health of an entity over time
@@ -34,6 +35,7 @@ public partial struct HealthRegenSystem : ISystem//, ISystemStartStop
             // that is why we need to call ValueRW to write or ValueRO to read from the component.
             float newHealth = hpRW.ValueRO.Current + hpRegenRO.ValueRO.PointPerSec * SystemAPI.Time.DeltaTime;
             hpRW.ValueRW.Current = math.min(newHealth, hpRW.ValueRO.Max);
+            Debug.DrawLine(Vector3.zero, Vector3.one*3,Color.blue,5);
         }
     }
     
