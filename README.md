@@ -33,7 +33,7 @@ Come join us on discord to show what you made using the skill you learned here [
 	<b style="font-size:30px">02-PathFollow</b>
 	<ul>
 	  <li> Dynamic Buffer</li>
-	  <li> I Buffer Element Data</li>
+	  <li> IBufferElementData</li>
 	  <li> Internal Buffer Capacity</li>
 	  <li> Local Transform</li>
 	  <li> Transforms Helpers</li>
