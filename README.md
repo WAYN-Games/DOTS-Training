@@ -28,6 +28,28 @@ Come join us on discord to show what you made using the skill you learned here [
 	</a>	    
     </td>	
  </tr>
+  <tr>
+    <td>
+	<b style="font-size:30px">02-PathFollow</b>
+	<ul>
+	  <li> Dynamic Buffer</li>
+	  <li> I Buffer Element Data</li>
+	  <li> Internal Buffer Capacity</li>
+	  <li> Local Transform</li>
+	  <li> Transforms Helpers</li>
+	  <li> Burst </li>
+	  <li> Profiler</li>
+	  <li> Baking Dependency</li>
+	  <li> Baking Only Entity</li>
+	  <li> Bonus Tip for cleaner code</li>
+	</ul>
+    </td>
+    <td>
+  	<a href="https://www.youtube.com/watch?v=gODYxTgk-TI">
+     		<img src="https://img.youtube.com/vi/gODYxTgk-TI/0.jpg"/>
+	</a>	    
+    </td>	
+ </tr>
 </table>
 
 
