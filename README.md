@@ -50,6 +50,26 @@ Come join us on discord to show what you made using the skill you learned here [
 	</a>	    
     </td>	
  </tr>
+  </tr>
+  <tr>
+    <td>
+	<b style="font-size:30px">02-PathFollow</b>
+	<ul>
+		<li>Entity Command Buffer</li>
+		<li>Structural Change</li>
+		<li>LocalToWorld</li>
+		<li>Entity Prefab</li>
+		<li>Tag Component </li>
+		<li>Enabled Component</li>
+		<li>UpdateAfter/UpdateBefore/UpdateInGroup</li>
+	</ul>
+    </td>
+    <td>
+  	<a href="https://www.youtube.com/watch?v=wpuBGPqa4z8">
+     		<img src="https://img.youtube.com/vi/wpuBGPqa4z8/0.jpg"/>
+	</a>	    
+    </td>	
+ </tr>
 </table>
 
 
