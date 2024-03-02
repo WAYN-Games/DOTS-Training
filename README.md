@@ -61,7 +61,10 @@ Come join us on discord to show what you made using the skill you learned here [
 		<li>Entity Prefab</li>
 		<li>Tag Component </li>
 		<li>Enabled Component</li>
+		<li>EntityQueryOptions</li>
 		<li>UpdateAfter/UpdateBefore/UpdateInGroup</li>
+		<li>OnCreate</li>
+		<li>RequireForUpdate</li>
 	</ul>
     </td>
     <td>
