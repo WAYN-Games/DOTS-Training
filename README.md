@@ -53,7 +53,7 @@ Come join us on discord to show what you made using the skill you learned here [
   </tr>
   <tr>
     <td>
-	<b style="font-size:30px">02-PathFollow</b>
+	<b style="font-size:30px">03-Spawning</b>
 	<ul>
 		<li>Entity Command Buffer</li>
 		<li>Structural Change</li>
