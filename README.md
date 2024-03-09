@@ -68,6 +68,30 @@ Come join us on discord to show what you made using the skill you learned here [
 	</ul>
     </td>
     <td>
+  	<a href="https://www.youtube.com/watch?v=sgWyFaSMC3c">
+     		<img src="https://img.youtube.com/vi/sgWyFaSMC3c/0.jpg"/>
+	</a>	    
+    </td>	
+ </tr>
+ <tr>
+    <td>
+	<b style="font-size:30px">04-TowerPlacement</b>
+	<ul>
+	
+<li>Physics Package                      </li>
+<li>Input System Package                 </li>
+<li>Prefabs                              </li>
+<li>MonoBehaviours to Entities           </li>
+<li>Physics Layer Management             </li>
+<li>Raycasting                           </li>
+<li>Overlap Sphere                       </li>
+<li>Collision Detection                  </li>
+<li>Singleton Entities                   </li>
+<li>Dynamic Buffers                      </li>
+<li>Native Containers                    </li>
+	</ul>
+    </td>
+    <td>
   	<a href="https://www.youtube.com/watch?v=wpuBGPqa4z8">
      		<img src="https://img.youtube.com/vi/wpuBGPqa4z8/0.jpg"/>
 	</a>	    
