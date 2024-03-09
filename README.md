@@ -68,8 +68,8 @@ Come join us on discord to show what you made using the skill you learned here [
 	</ul>
     </td>
     <td>
-  	<a href="https://www.youtube.com/watch?v=sgWyFaSMC3c">
-     		<img src="https://img.youtube.com/vi/sgWyFaSMC3c/0.jpg"/>
+  	<a href="https://www.youtube.com/watch?v=wpuBGPqa4z8">
+     		<img src="https://img.youtube.com/vi/wpuBGPqa4z8/0.jpg"/>
 	</a>	    
     </td>	
  </tr>
@@ -92,8 +92,8 @@ Come join us on discord to show what you made using the skill you learned here [
 	</ul>
     </td>
     <td>
-  	<a href="https://www.youtube.com/watch?v=wpuBGPqa4z8">
-     		<img src="https://img.youtube.com/vi/wpuBGPqa4z8/0.jpg"/>
+	  	<a href="https://www.youtube.com/watch?v=sgWyFaSMC3c">
+     		<img src="https://img.youtube.com/vi/sgWyFaSMC3c/0.jpg"/>
 	</a>	    
     </td>	
  </tr>
