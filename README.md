@@ -97,6 +97,54 @@ Come join us on discord to show what you made using the skill you learned here [
 	</a>	    
     </td>	
  </tr>
+  <tr>
+    <td>
+	<b style="font-size:30px">05-GameOver</b>
+	<ul>
+	
+	
+<li>Physics Package			 </li>
+<li>Collision Detection      </li>
+<li>Jobs                     </li>
+<li>ITriggerEventsJob        </li>
+<li>Component Lookups        </li>
+<li>Entity Query             </li>
+<li>Entity Command Buffer    </li>
+<li>Playback Policy          </li>
+
+	</ul>
+    </td>
+    <td>
+	  	<a href="https://www.youtube.com/watch?v=Kv3CA8NUukM">
+     		<img src="https://img.youtube.com/vi/Kv3CA8NUukM/0.jpg"/>
+	</a>	    
+    </td>	
+ </tr>
+  <tr>
+    <td>
+	<b style="font-size:30px">06-ShootToKill</b>
+	<ul>
+	
+<li>BlobAssetReference                   </li>
+<li>BlobAsset                            </li>
+<li>IAspect                              </li>
+<li>IJobEntity                           </li>
+<li>IJobChunk                            </li>
+<li>Parallel Command Buffers             </li>
+<li>Entity Remaping                      </li>
+<li>Memory Management                    </li>
+<li>Job Dependancy                       </li>
+<li>Job Scheduling                       </li>
+<li>VFX                                  </li>
+	
+	</ul>
+    </td>
+    <td>
+	  	<a href="https://www.youtube.com/watch?v=FJdthVNK5dA">
+     		<img src="https://img.youtube.com/vi/FJdthVNK5dA/0.jpg"/>
+	</a>	    
+    </td>	
+ </tr>
 </table>
 
 
