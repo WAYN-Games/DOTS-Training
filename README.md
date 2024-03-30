@@ -139,6 +139,26 @@ Come join us on discord to show what you made using the skill you learned here [
 		</a>
 	</td>
 </tr>
+<tr>
+	<td>
+		<b style="font-size:30px">07-Animation</b>
+		<ul>
+			<li>Managed components                                  </li>
+			<li>Cleanup components                                  </li>
+			<li>Hybrid workflow                                     </li>
+			<li>SystemAPI.ManagedAPI                                </li>
+			<li>Reactive systems                                    </li>
+			<li>Simulation vs. presentation separation              </li>
+			<li>GameObjects and Entities synchronization            </li>
+			<li>Animation integration with ECS                      </li>
+		</ul>
+	</td>
+	<td>
+		<a href="https://www.youtube.com/watch?v=va6xGjKBxbU">
+			<img src="https://img.youtube.com/vi/va6xGjKBxbU/0.jpg"/>
+		</a>
+	</td>
+</tr>
 </table>
 
 
