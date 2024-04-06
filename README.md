@@ -159,6 +159,22 @@ Come join us on discord to show what you made using the skill you learned here [
 		</a>
 	</td>
 </tr>
+<tr>
+	<td>
+		<b style="font-size:30px">08-Health Bars</b>
+		<ul>
+			<li>Change Filters                            	      </li>
+			<li>Hybrid workflow                                   </li>
+			<li>SystemAPI.ManagedAPI                              </li>
+			<li>GameObjects and Entities synchronization          </li>
+		</ul>
+	</td>
+	<td>
+		<a href="https://www.youtube.com/watch?v=UpeokYXpuqE">
+			<img src="https://img.youtube.com/vi/UpeokYXpuqE/0.jpg"/>
+		</a>
+	</td>
+</tr>
 </table>
 
 

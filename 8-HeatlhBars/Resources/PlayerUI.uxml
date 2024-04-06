@@ -1,0 +1,7 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:ProgressBar value="0.25" title="Lives" name="ProgressBar" high-value="10" />
+    <ui:VisualElement style="flex-grow: 0; flex-direction: row;">
+        <ui:Button text="-" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Decrease" style="flex-grow: 1;" />
+        <ui:Button text="+" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Add" style="flex-grow: 1;" />
+    </ui:VisualElement>
+</ui:UXML>
