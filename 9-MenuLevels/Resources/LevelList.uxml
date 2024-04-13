@@ -1,0 +1,10 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement name="LevelPicker" style="flex-grow: 1; flex-direction: row; flex-wrap: wrap; align-self: center; align-items: center;">
+        <ui:Button text="1" parse-escape-sequences="true" display-tooltip-when-elided="true" style="width: 40px; height: 40px;" />
+        <ui:Button text="2" parse-escape-sequences="true" display-tooltip-when-elided="true" style="width: 40px; height: 40px;" />
+    </ui:VisualElement>
+    <ui:VisualElement name="GameOver" style="flex-grow: 1; justify-content: center; flex-direction: row;">
+        <ui:Button text="&lt;&lt; Menu" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Back" style="align-items: center; flex-grow: 0; flex-shrink: 0; justify-content: center; align-self: center;" />
+        <ui:Button text="Retry" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Retry" style="align-items: center; flex-grow: 0; flex-shrink: 0; justify-content: center; align-self: center;" />
+    </ui:VisualElement>
+</ui:UXML>

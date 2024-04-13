@@ -175,6 +175,22 @@ Come join us on discord to show what you made using the skill you learned here [
 		</a>
 	</td>
 </tr>
+<tr>
+	<td>
+		<b style="font-size:30px">09-Scene Management</b>
+		<ul>
+			<li>Scene Manager                            	      </li>
+			<li>Scene System                                   </li>
+			<li>UI Toolkit                              </li>
+			<li>Build Settings          </li>
+		</ul>
+	</td>
+	<td>
+		<a href="https://www.youtube.com/watch?v=ZigHHzelQ9Q">
+			<img src="https://img.youtube.com/vi/ZigHHzelQ9Q/0.jpg"/>
+		</a>
+	</td>
+</tr>
 </table>
 
 
