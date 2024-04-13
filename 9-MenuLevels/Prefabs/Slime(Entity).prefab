@@ -48,6 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Prefab: {fileID: 7064856053970336210, guid: 2773b3ddb88b7b04982507d1a16ae3fd, type: 3}
+  GizmoColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!135 &490349092869248895
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -108,5 +109,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9af80fea601f406190d0ff6c147d0151, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MovementSpeed: 5
+  MovementSpeed: {fileID: 11400000, guid: d84148968b7dbfc4099e0cc193f8204c, type: 2}
   PathToFollow: []

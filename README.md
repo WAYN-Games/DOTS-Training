@@ -191,6 +191,16 @@ Come join us on discord to show what you made using the skill you learned here [
 		</a>
 	</td>
 </tr>
+<tr>
+	<td>
+		<b style="font-size:30px">10-Putting it all together</b>
+		This code package builds on top of all the knowledge toguht through out the series to make a fulling fucntionnal tower defense game with two levels and add mechanics such has economy mangement with coins from killing monster and for building tower.
+		This is available to all Ko-Fi supporters (One time donator and Members)
+	</td>
+	<td>
+
+	</td>
+</tr>
 </table>
 
 

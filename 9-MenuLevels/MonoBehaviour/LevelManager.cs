@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using Unity.Entities;
 using Unity.Entities.Serialization;
 using Unity.Scenes;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
@@ -10,9 +9,10 @@ using UnityEngine.UIElements;
 public class LevelManager : MonoBehaviour
 {
     public static LevelManager Instance { get; private set; }
-    
-    public SceneAsset GameScene;
-    public SceneAsset MenuScene;
+
+    public string GameScene = "LevelScene";
+    public string MenuScene = "GameMenu";
+ 
     public SubScene Scene;
     public UIDocument UI;
     
@@ -64,7 +64,7 @@ public class LevelManager : MonoBehaviour
     
     public void LoadGameScene()
     {
-        SceneManager.LoadScene(GameScene.name,LoadSceneMode.Single);
+        SceneManager.LoadScene(GameScene,LoadSceneMode.Single);
         
         SceneSystem.UnloadScene(World.DefaultGameObjectInjectionWorld.Unmanaged, Scene.SceneGUID,
             SceneSystem.UnloadParameters.DestroyMetaEntities);
@@ -77,7 +77,8 @@ public class LevelManager : MonoBehaviour
         Debug.Log($"Loading level {level}");
         if (!Entity.Null.Equals(_currentLevel))
         {
-            SceneSystem.UnloadScene(World.DefaultGameObjectInjectionWorld.Unmanaged,_currentLevel,SceneSystem.UnloadParameters.DestroyMetaEntities);
+            SceneSystem.UnloadScene(World.DefaultGameObjectInjectionWorld.Unmanaged,
+                _currentLevel,SceneSystem.UnloadParameters.DestroyMetaEntities);
         }
 
         // If the level is not valid, load the main main menu instead
@@ -89,7 +90,9 @@ public class LevelManager : MonoBehaviour
         {
             _currentLevelIndex = level;
             _currentLevel =
-                SceneSystem.LoadSceneAsync(World.DefaultGameObjectInjectionWorld.Unmanaged, LevelScenes[level]);
+                SceneSystem.LoadSceneAsync(
+                    World.DefaultGameObjectInjectionWorld.Unmanaged, 
+                    LevelScenes[level]);
         }
     }
 
@@ -100,7 +103,8 @@ public class LevelManager : MonoBehaviour
             SceneSystem.UnloadScene(World.DefaultGameObjectInjectionWorld.Unmanaged,_currentLevel,SceneSystem.UnloadParameters.DestroyMetaEntities);
         }
         _currentLevelIndex = -1;
-        SceneManager.LoadScene(MenuScene.name, LoadSceneMode.Single);
+        _currentLevel = Entity.Null;
+        SceneManager.LoadScene(MenuScene, LoadSceneMode.Single);
         _gameOverScreen.visible = false;
     }
 
@@ -114,4 +118,6 @@ public class LevelManager : MonoBehaviour
     {
         LoadLevel(_currentLevelIndex + 1);
     }
+
+
 }
