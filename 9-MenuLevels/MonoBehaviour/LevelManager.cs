@@ -7,6 +7,11 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
 public class LevelManager : MonoBehaviour
+//    ,IEntitySceneBuildAdditions
+//          -> in 1.0.16 this interface does not exists and the build process will not detect the
+//             List<EntitySceneReference> so we need to add all the levels with a sub-scene authoring
+//             component in one of the game scene and add the scene to the build setting of the game
+//          -> in 1.2.0 this interface allows you to self register sub scenes to the build 
 {
     public static LevelManager Instance { get; private set; }
 
