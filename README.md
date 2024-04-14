@@ -204,4 +204,7 @@ Come join us on discord to show what you made using the skill you learned here [
 </tr>
 </table>
 
+A build of the game is available on https://wayngames.itch.io/dots-master-class
+<iframe frameborder="0" src="https://itch.io/embed/2644199" width="552" height="167"><a href="https://wayngames.itch.io/dots-master-class">DOTS Master Class Showcase by WAYN Games</a></iframe>
+
 
